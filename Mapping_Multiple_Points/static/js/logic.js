@@ -18,13 +18,37 @@ streets.addTo(map);
 // let marker = L.marker([34.0522, -118.2437]).addTo(map);
 
 //  Add a circle to the map for Los Angeles, California.
-L.circle([34.0522, -118.2437], {
-    radius: 300,
-    color: 'black',
-    fillColor: 'yellow',
-    fillOpacity: 0.5
- }).addTo(map);
+// L.circle([34.0522, -118.2437], {
+//     radius: 300,
+//     color: 'black',
+//     fillColor: 'yellow',
+//     fillOpacity: 0.5
+//  }).addTo(map);
 
  // Alternate circle marker
  // L.circleMarker([34.0522, -118.2437]).addTo(map);
+
+// Get data from cities.js
+let cityData = cities;
+
+// Loop through the cities array and create one marker for each city.
+// cityData.forEach(function(city) {
+//     console.log(city)
+//     L.marker(city.location)
+//     .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+//     .addTo(map);
+// });
+
+// Loop through the cities array and create one circlemarker for each city.
+cityData.forEach(function(city) {
+    console.log(city)
+    L.circleMarker(city.location,{
+        radius:city.population/200000,
+        color:"orange",
+        fillcolor: "orange",
+        weight: 3
+    })
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
+    .addTo(map);
+});
 
